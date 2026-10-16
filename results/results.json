@@ -1,0 +1,109 @@
+{
+  "split": {
+    "train": "900,188 interactions, 2000-04-25 to 2000-12-29",
+    "validation": "50,010 interactions, 2000-12-29 to 2001-06-20",
+    "test": "50,011 interactions, 2001-06-20 to 2003-02-28",
+    "val_eval_users": 922,
+    "test_eval_users": 809,
+    "test_cold_item_interactions": 25
+  },
+  "chosen_params": {
+    "Popularity": {},
+    "Item-kNN": {
+      "k": 1600
+    },
+    "ALS": {
+      "factors": 128,
+      "reg": 400,
+      "alpha": 10
+    },
+    "ALS + GBM re-ranker": {
+      "candidates": 100,
+      "features": 8
+    }
+  },
+  "test": {
+    "Popularity": {
+      "ndcg@10": 0.2186762924297886,
+      "recall@10": 0.04338617833258081,
+      "coverage@10": 0.04311279826464208,
+      "users": 809
+    },
+    "Item-kNN": {
+      "ndcg@10": 0.22713681803642347,
+      "recall@10": 0.0443458682881361,
+      "coverage@10": 0.08595444685466377,
+      "users": 809
+    },
+    "ALS": {
+      "ndcg@10": 0.23943948340005183,
+      "recall@10": 0.05251377401550405,
+      "coverage@10": 0.1222885032537961,
+      "users": 809
+    },
+    "ALS + GBM re-ranker": {
+      "ndcg@10": 0.2226312722391246,
+      "recall@10": 0.05428562168362831,
+      "coverage@10": 0.1399132321041215,
+      "users": 809
+    }
+  },
+  "ndcg_difference_95ci": {
+    "Item-kNN vs Popularity": {
+      "mean": 0.008460525606634869,
+      "lo": -0.0019897068179705124,
+      "hi": 0.019681878830745618
+    },
+    "ALS vs Popularity": {
+      "mean": 0.020763190970263256,
+      "lo": 0.010475891566314713,
+      "hi": 0.03159162939826425
+    },
+    "ALS + GBM re-ranker vs Popularity": {
+      "mean": 0.003954979809336035,
+      "lo": -0.011029653619330719,
+      "hi": 0.018780347610884266
+    },
+    "ALS + GBM re-ranker vs ALS": {
+      "mean": -0.01680821116092722,
+      "lo": -0.03081890370195831,
+      "hi": -0.0027374617297153798
+    },
+    "ALS vs Item-kNN": {
+      "mean": 0.012302665363628382,
+      "lo": 0.0029211593388781586,
+      "hi": 0.021697686257591744
+    }
+  },
+  "reranker_candidate_recall@100": 0.26961768732207647,
+  "reranker_permutation_importance_auc": {
+    "als_rank": 0.0386,
+    "knn_score": 0.0179,
+    "release_year": 0.0119,
+    "user_activity": 0.0109,
+    "item_mean_rating": 0.0036,
+    "recent_pop_share": 0.0031,
+    "als_score": -0.0027,
+    "pop_share": -0.0055
+  },
+  "reranker_same_window_check": {
+    "users": 922,
+    "als_ndcg@10": 0.18001898735076333,
+    "reranked_ndcg@10": 0.21918884243231593,
+    "als_recall@10": 0.05121328892391923,
+    "reranked_recall@10": 0.07744976443395148,
+    "ndcg_difference_95ci": [
+      0.039169855081552594,
+      0.02651409692417151,
+      0.05175144810360444
+    ]
+  },
+  "runtime_seconds": 329.5,
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-6.8.0-117-generic-aarch64-with-glibc2.41",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1"
+  }
+}
